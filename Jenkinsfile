@@ -70,8 +70,7 @@ def setPipeLineParameters() {
 def Checkout_Project(run) {
 	stage('Checkout_Project') {
 		if(run) {
-			checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: '${ScmLocation}']]])
-			checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'demoinventory']], userRemoteConfigs: [[url: '${ScmLocation}']]])
+			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/kaushiksen1984/demoinventory.git']]])
 		}
 	}
 }
