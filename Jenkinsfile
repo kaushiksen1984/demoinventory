@@ -3,7 +3,6 @@ node() {
 	timeout(time: 2, unit: 'HOURS') {
 
 		delete_Worspacedir()
-		setPipeLineParameters()
 		
 		echo appversion
 		stageArray = [
