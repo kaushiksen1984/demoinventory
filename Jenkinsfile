@@ -49,7 +49,6 @@ def notifyFailed() {
 
 def setPipeLineParameters() {
 	properties ([
-		[$class: 'GitLabConnectionProperty', gitLabConnection: 'GitLabConnection'],
 		[$class: 'ParametersDefinationProperty', parameterDefinations:
 			[
 				[$class: 'ChoiceParameterDefination', choices: 'SNAPSHOT\nRC\n', description : '', name: 'PipelineType'],
