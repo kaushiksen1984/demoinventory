@@ -35,15 +35,15 @@ def delete_Worspacedir() {
 def notifySuccess() {
 	branchName = 'demoinventory'
 	groupId = 'com.products'
-	def details = "Pipeline successful : Job ${groupId}_Pipeline_${branchName} [${env.BUILD_NUMBER}]: Pipeline can be accessed at the following link: ${env.BUILD_URL} \n\nAppVersion: ${appversion} \nNode Name: ${env.NODE_NAME}"
-	emailext body: details, subject: "Pipeline successful : Job '${groupId}_Pipeline_${branchName} [${env.BUILD_NUMBER}']", to: "kaushik.extc@gmail.com"\
+	def details = "Pipeline successful"
+	emailext body: details, subject: "Pipeline successful", to: "kaushik.extc@gmail.com"\
 }
 
 def notifyFailed() {
 	branchName = 'demoinventory'
 	groupId = 'com.products'
-	def details = "Pipeline FAILED : Job ${groupId}_Pipeline_${branchName} [${env.BUILD_NUMBER}]: Pipeline can be accessed at the following link: ${env.BUILD_URL} \n\nAppVersion: ${appversion} \nNode Name: ${env.NODE_NAME}"
-	emailext body: details, subject: "Pipeline FAILED : Job '${groupId}_Pipeline_${branchName} [${env.BUILD_NUMBER}']", to: "kaushik.extc@gmail.com"\
+	def details = "Pipeline FAILED"
+	emailext body: details, subject: "Pipeline FAILED", to: "kaushik.extc@gmail.com"\
 }
 
 def Checkout_Project(run) {
