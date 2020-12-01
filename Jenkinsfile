@@ -17,10 +17,8 @@ node() {
 				runFlag = true;
 				"$functionName"(runFlag)
 			}//for
-			notifySuccess()
 		}//try
 		catch (e) {
-			notifyFailed()
 			throw e
 		}//catch
 	}//node
@@ -30,20 +28,6 @@ node() {
 def delete_Worspacedir() {
 	//deleteDir()
 	cleanWs()
-}
-
-def notifySuccess() {
-	branchName = 'demoinventory'
-	groupId = 'com.products'
-	def details = "Pipeline successful"
-	emailext body: details, subject: "Pipeline successful", to: "kaushik.extc@gmail.com"\
-}
-
-def notifyFailed() {
-	branchName = 'demoinventory'
-	groupId = 'com.products'
-	def details = "Pipeline FAILED"
-	emailext body: details, subject: "Pipeline FAILED", to: "kaushik.extc@gmail.com"\
 }
 
 def Checkout_Project(run) {
@@ -57,6 +41,7 @@ def Checkout_Project(run) {
 def Build_Project(run) {
 	stage('Build_Project') {
 		if(run) {
+			echo "Running Build"
 			sh "mvn clean deploy -PrunPIT -PJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
 		}
 	}
