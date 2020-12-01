@@ -47,25 +47,6 @@ def notifyFailed() {
 	emailext body: details, subject: "Pipeline FAILED : Job '${groupId}_Pipeline_${branchName} [${env.BUILD_NUMBER}']", to: "kaushik.extc@gmail.com"\
 }
 
-def setPipeLineParameters() {
-	properties ([
-		[$class: 'ParametersDefinationProperty', parameterDefinations:
-			[
-				[$class: 'ChoiceParameterDefination', choices: 'SNAPSHOT\nRC\n', description : '', name: 'PipelineType'],
-				[$class: 'StringParameterDefination', defaultValue: '1.0.0-SNAPSHOT', description : '1.0.0-SNAPSHOT OR 1.0.0-RC-X', name: 'appversion'],
-				[$class: 'StringParameterDefination', defaultValue: '1.0.0-SNAPSHOT', description : 'Required Snapshot Version', name: 'Developer_Version'],
-				[$class: 'StringParameterDefination', defaultValue: 'demoinventory', description : 'Application Name', name: 'ApplicationName'],
-				[$class: 'StringParameterDefination', defaultValue: 'https://github.com/kaushiksen1984/demoinventory.git', description : 'Git Url', name: 'ScmLocation']
-			]
-		]
-	])
-	
-	echo "app version:: ${appversion}"
-	echo "app version:: ${PipelineType}"
-	echo "app version:: ${ApplicationName}"
-	echo "app version:: ${ScmLocation}"
-}
-
 def Checkout_Project(run) {
 	stage('Checkout_Project') {
 		if(run) {
@@ -77,9 +58,7 @@ def Checkout_Project(run) {
 def Build_Project(run) {
 	stage('Build_Project') {
 		if(run) {
-			if(PipelineTYpe.equals("SNAPSHOT")) {
-				sh "mvn clean deploy -PrunPIT -PJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
-			}
+			sh "mvn clean deploy -PrunPIT -PJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
 		}
 	}
 }
