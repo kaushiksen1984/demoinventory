@@ -10,21 +10,21 @@ node() {
 			"Checkout_Project",
 			"Build_Project"
 		]
-	}
 	
-	try {
-		def functionName;
-		for (i = 0; i < stageArray.size(); i++) {
-			functionName = stageArray.getAt(i)
-			println(functionName)
-			runFlag = true;
-			"$functionName"(runFlag)
+		try {
+			def functionName;
+			for (i = 0; i < stageArray.size(); i++) {
+				functionName = stageArray.getAt(i)
+				println(functionName)
+				runFlag = true;
+				"$functionName"(runFlag)
+			}
+			notifySuccess()
 		}
-		notifySuccess()
-	}
-	catch (e) {
-		notifyFailed()
-		throw e
+		catch (e) {
+			notifyFailed()
+			throw e
+		}
 	}
 	
 	def delete_Worspacedir() {
