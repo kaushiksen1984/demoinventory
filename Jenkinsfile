@@ -47,7 +47,7 @@ def Build_Project(run) {
 	}
 }
 
-def RunBDD(run) {
+def Run_BDD(run) {
 	stage('Run_BDD') {
 		if(run) {
 			sh "mvn test -PrunBDD -Dtest=DemoinventoryBDDRunner -Dkarate.baseURL=http://localhost:9080/products"
