@@ -167,6 +167,7 @@
 						<configuration>
 							<excludes>
 								<exclude>com/products/DemoinventoryApplication.class</exclude>
+								<exclude>com/products/constants/DemoInventoryConstants.class</exclude>
 							</excludes>
 						</configuration>
 						<executions>
