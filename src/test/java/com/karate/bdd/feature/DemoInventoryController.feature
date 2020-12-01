@@ -34,10 +34,3 @@ Scenario: To Update Product
 	Then status 201
  	And match response == "Product updated"
  	
- Scenario: To delete based on Product ID
-
-	Given path '/deleteProduct'
-	And param productid = '11'
-	When method delete
-	Then status 201
-	And match response == "Product deleted"

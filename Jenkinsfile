@@ -41,8 +41,15 @@ def Checkout_Project(run) {
 def Build_Project(run) {
 	stage('Build_Project') {
 		if(run) {
-			echo 'test'
 			sh "mvn clean deploy -PrunPIT -PrunJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
+		}
+	}
+}
+
+def RunBDD(run) {
+	stage('Run_BDD') {
+		if(run) {
+			sh "mvn test -PrunBDD -Dtest=DemoinventoryBDDRunner -Dkarate.baseURL=http://localhost:9080/products"
 		}
 	}
 }
