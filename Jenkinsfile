@@ -19,12 +19,12 @@ node() {
 				"$functionName"(runFlag)
 			}//for
 			def subject = "Pipeline successful Job ${env.JOB_NAME}[${env.BUILD_NUMBER}]"
-			def details = "Build Successful. Check console output at ${env.BUILD_URL} \nNode name: ${env.NODE_NAME}"
+			def details = "Build Successful. Check console output at ${env.BUILD_URL} \n\nNode name: ${env.NODE_NAME}"
 			emailext body: details, subject: subject, to: 'senkaushikdevops@gmail.com'
 		}//try
 		catch (e) {
 			def subject = "Pipeline failed Job ${env.JOB_NAME}[${env.BUILD_NUMBER}]"
-			def details = "Build Failed. Check console output at ${env.BUILD_URL} \nNode name: ${env.NODE_NAME}"
+			def details = "Build Failed. Check console output at ${env.BUILD_URL} \n\nNode name: ${env.NODE_NAME}"
 			emailext body: details, subject: subject, to: 'senkaushikdevops@gmail.com'
 			throw e
 		}//catch
