@@ -44,6 +44,11 @@ def Build_Project(run) {
 		if(run) {
 			sh "mvn clean deploy -PrunPIT -PrunJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
 			saveReportHelper('target/site/jacoco', 'JacocoReport')
+			saveReportHelper('target/pit-reports', 'PITReport')
+			
+			junit testResults: '**/target/surefire-reports/TEST-*.xml'
+			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'site/jacoco/index.html', reportName: 'Jacoco Report'])
+			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'site/jacoco/index.html', reportName: 'Jacoco Report'])
 		}
 	}
 }
