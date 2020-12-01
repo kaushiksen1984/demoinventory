@@ -18,7 +18,7 @@ node() {
 				runFlag = true;
 				"$functionName"(runFlag)
 			}//for
-			def details = "Build Successful. Check console output at ${env.NODE_NAME}"
+			def details = "Build Successful. Check console output at ${env.BUILD_URL}"
 			emailext body: details, subject: 'Build Successful', to: 'senkaushikdevops@gmail.com'
 		}//try
 		catch (e) {
