@@ -42,7 +42,7 @@ def Build_Project(run) {
 	stage('Build_Project') {
 		if(run) {
 			echo 'test'
-			//sh "clean install"
+			sh "clean install"
 			sh "mvn clean deploy -PrunPIT -PJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
 		}
 	}
