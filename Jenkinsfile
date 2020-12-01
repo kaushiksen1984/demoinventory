@@ -48,7 +48,7 @@ def Build_Project(run) {
 			
 			junit testResults: '**/target/surefire-reports/TEST-*.xml'
 			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'site/jacoco/index.html', reportName: 'Jacoco Report'])
-			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'site/jacoco/index.html', reportName: 'Jacoco Report'])
+			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'pit-reports/index.html', reportName: 'PIT Report'])
 		}
 	}
 }
@@ -57,6 +57,8 @@ def Run_BDD(run) {
 	stage('Run_BDD') {
 		if(run) {
 			sh "mvn test -PrunBDD -Dtest=DemoinventoryBDDRunner -Dkarate.baseURL=http://localhost:9080/products"
+			saveReportHelper('target/cucumber-html-reports', 'CucumberReport')
+			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'cucumber-html-reports/overview-features.html', reportName: 'Cucumber Report'])
 		}
 	}
 }
