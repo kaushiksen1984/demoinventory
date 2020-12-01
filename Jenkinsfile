@@ -18,10 +18,12 @@ node() {
 				runFlag = true;
 				"$functionName"(runFlag)
 			}//for
-			emailext body: 'Build Successful', subject: 'Build Successful', to: 'senkaushikdevops@gmail.com'
+			def details = "Build Successful. Check console output at ${env.NODE_NAME}"
+			emailext body: details, subject: 'Build Successful', to: 'senkaushikdevops@gmail.com'
 		}//try
 		catch (e) {
-			emailext body: 'Build Failed', subject: 'Build Failed', to: 'senkaushikdevops@gmail.com'
+			def details = "Build Failed. Check console output at ${env.NODE_NAME}"
+			emailext body: details, subject: 'Build Failed', to: 'senkaushikdevops@gmail.com'
 			throw e
 		}//catch
 	}//node
