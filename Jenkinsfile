@@ -6,7 +6,8 @@ node() {
 		
 		stageArray = [
 			"Checkout_Project",
-			"Build_Project"
+			"Build_Project",
+			"Run_BDD"
 		]
 	
 		try {
