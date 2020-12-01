@@ -43,6 +43,7 @@ def Build_Project(run) {
 	stage('Build_Project') {
 		if(run) {
 			sh "mvn clean deploy -PrunPIT -PrunJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
+			saveReportHelper('target/site/jacoco', 'JacocoReport')
 		}
 	}
 }
@@ -53,4 +54,10 @@ def Run_BDD(run) {
 			sh "mvn test -PrunBDD -Dtest=DemoinventoryBDDRunner -Dkarate.baseURL=http://localhost:9080/products"
 		}
 	}
+}
+
+def saveReportHelper(sourceFolderLoc,subFolderName) {
+	def destinationFolder = "reports/${subFolderName}"
+	sh "mkdir -p ${destinationFolder}"
+	sh "cp -R ${sourceFolderLoc} ${destinationFolder}"
 }
