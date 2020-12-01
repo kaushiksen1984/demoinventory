@@ -41,8 +41,8 @@ def Checkout_Project(run) {
 def Build_Project(run) {
 	stage('Build_Project') {
 		if(run) {
-			echo "Running Build"
-			sh "mvn clean deploy -PrunPIT -PJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
+			sh "clean install"
+			//sh "mvn clean deploy -PrunPIT -PJacoco -PrunSonar -Djacoco.haltOnFailure=false -Dsonar.buildbreaker.skip=true"
 		}
 	}
 }
