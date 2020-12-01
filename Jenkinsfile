@@ -4,7 +4,6 @@ node() {
 
 		delete_Worspacedir()
 		
-		echo appversion
 		stageArray = [
 			"Checkout_Project",
 			"Build_Project"
