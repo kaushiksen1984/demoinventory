@@ -29,7 +29,8 @@ node() {
 }
 
 def delete_Worspacedir() {
-	deleteDir()
+	//deleteDir()
+	cleanWs()
 }
 
 def notifySuccess() {
