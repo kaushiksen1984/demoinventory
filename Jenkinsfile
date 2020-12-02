@@ -7,6 +7,7 @@ node() {
 		stageArray = [
 			"Checkout_Project",
 			"Build_Project",
+			"Deploy_Application",
 			"Run_BDD"
 		]
 	
@@ -55,6 +56,14 @@ def Build_Project(run) {
 			junit testResults: '**/target/surefire-reports/TEST-*.xml'
 			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'site/jacoco/index.html', reportName: 'Jacoco Report'])
 			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'pit-reports/index.html', reportName: 'PIT Report'])
+		}
+	}
+}
+
+dep Deploy_Application(run) {
+	stage('Deploy_Application') {
+		if(run) {
+			deploy adapters: [tomcat9(credentialsId: 'TomcatDepoymentId', path: '', url: 'http://localhost:8085')], contextPath: '/v1', war: 'demoinventory-1.0.0-SNAPSHOT'
 		}
 	}
 }
