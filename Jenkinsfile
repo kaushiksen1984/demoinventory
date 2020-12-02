@@ -60,7 +60,7 @@ def Build_Project(run) {
 	}
 }
 
-dep Deploy_Application(run) {
+def Deploy_Application(run) {
 	stage('Deploy_Application') {
 		if(run) {
 			deploy adapters: [tomcat9(credentialsId: 'TomcatDepoymentId', path: '', url: 'http://localhost:8085')], contextPath: '/v1', war: 'demoinventory-1.0.0-SNAPSHOT'
