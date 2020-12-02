@@ -21,7 +21,7 @@ public class HelloWorldControllerTest {
 	}
 	
 	@Test
-	public void testGetAllProductDetails() {
+	public void testDisplayGreetingMessage() {
 		String expected = "Hello World";
 		ResponseEntity<String> actual = helloWorldController.displayGreetingMessage();
 		Assert.assertEquals(expected, actual.getBody());
