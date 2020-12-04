@@ -71,7 +71,7 @@ def Deploy_Application(run) {
 def Run_BDD(run) {
 	stage('Run_BDD') {
 		if(run) {
-			sh "mvn test -PrunBDD -Dtest=DemoinventoryBDDRunner -Dkarate.baseURL=http://localhost:8085/v1/products"
+			sh "mvn test -PrunBDD -Dtest=DemoinventoryBDDRunner -Dkarate.baseURL=http://localhost:8085/v2/products"
 			saveReportHelper('target/cucumber-html-reports', 'CucumberReport')
 			publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target', reportFiles: 'cucumber-html-reports/overview-features.html', reportName: 'Cucumber Report'])
 		}
